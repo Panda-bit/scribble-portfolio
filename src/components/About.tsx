@@ -1,80 +1,13 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-
-const SocialLink = ({ href, label, index }: { href: string; label: string; index: number }) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
-        const width = canvas.width;
-        const height = canvas.height;
-
-        ctx.clearRect(0, 0, width, height);
-        ctx.strokeStyle = '#374151';
-        ctx.lineWidth = 2;
-
-        const drawScribbledLine = (x1: number, y1: number, x2: number, y2: number) => {
-            const segments = 15;
-            const wobble = 2;
-
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-
-            for (let i = 0; i <= segments; i++) {
-                const t = i / segments;
-                const x = x1 + (x2 - x1) * t;
-                const y = y1 + (y2 - y1) * t;
-
-                const seed = index * 500 + i;
-                const randomX = Math.sin(seed * 0.1) * wobble;
-                const randomY = Math.cos(seed * 0.15) * wobble;
-
-                ctx.lineTo(x + randomX, y + randomY);
-            }
-
-            ctx.stroke();
-        };
-
-        const margin = 8;
-        drawScribbledLine(margin, margin, width - margin, margin);
-        drawScribbledLine(width - margin, margin, width - margin, height - margin);
-        drawScribbledLine(width - margin, height - margin, margin, height - margin);
-        drawScribbledLine(margin, height - margin, margin, margin);
-    }, [index]);
-
-    return (
-        <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group cursor-pointer block"
-        >
-            <canvas
-                ref={canvasRef}
-                width={300}
-                height={80}
-                className="absolute inset-0 w-full h-full pointer-events-none"
-            />
-            <div className="relative py-4 px-6">
-                <span className="font-scribble text-lg md:text-xl text-gray-500 group-hover:text-gray-600 transition-colors">
-                    {label}
-                </span>
-            </div>
-        </a>
-    );
-};
+import { Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
+import profileImage from '../assets/images/about.png';
 
 const About = () => {
     const socialLinks = [
-        { href: 'https://instagram.com/lucas_.ho', label: 'Instagram' },
-        { href: 'https://www.reddit.com/user/OkBarracuda4416/', label: 'Reddit' },
-        { href: 'https://x.com/lucas_h_0', label: 'Twitter' },
-        { href: 'mailto:lucas.jediho@gmail.com', label: 'Email' },
+        { href: 'https://instagram.com/lucas_.ho', icon: Instagram, label: 'Instagram' },
+        { href: 'https://www.linkedin.com/in/lucas-ho-019497360/', icon: Linkedin, label: 'LinkedIn' },
+        { href: 'https://x.com/lucas_h_0', icon: Twitter, label: 'Twitter' },
+        { href: 'mailto:lucas.jediho@gmail.com', icon: Mail, label: 'Email' },
     ];
 
     return (
@@ -89,16 +22,17 @@ const About = () => {
                     About Me
                 </motion.h2>
 
-                {/* Profile Picture Placeholder - Replace with actual image */}
                 <motion.div
                     className="mb-8"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.2 }}
                 >
-                    <div className="w-48 h-48 mx-auto rounded-full bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-400 font-scribble">Profile Picture</span>
-                    </div>
+                    <img
+                        src={profileImage}
+                        alt="Lucas Ho"
+                        className="w-48 h-48 mx-auto rounded-full object-cover"
+                    />
                 </motion.div>
 
                 <motion.p
@@ -111,19 +45,26 @@ const About = () => {
                 </motion.p>
 
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto"
+                    className="flex justify-center gap-6"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.6 }}
                 >
-                    {socialLinks.map((link, index) => (
-                        <SocialLink
-                            key={index}
-                            href={link.href}
-                            label={link.label}
-                            index={index}
-                        />
-                    ))}
+                    {socialLinks.map((link, index) => {
+                        const Icon = link.icon;
+                        return (
+                            <a
+                                key={index}
+                                href={link.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-gray-600 transition-colors"
+                                aria-label={link.label}
+                            >
+                                <Icon size={32} strokeWidth={1.5} />
+                            </a>
+                        );
+                    })}
                 </motion.div>
             </div>
         </div>
