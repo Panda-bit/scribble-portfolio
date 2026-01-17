@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
-import profileImage from '../assets/images/about.png';
+import profileImage from '../assets/images/profile.jpg';
 
 const About = () => {
     const socialLinks = [
@@ -31,7 +31,7 @@ const About = () => {
                     <img
                         src={profileImage}
                         alt="Lucas Ho"
-                        className="w-48 h-48 mx-auto rounded-full object-cover"
+                        className="max-w-sm mx-auto object-contain"
                     />
                 </motion.div>
 

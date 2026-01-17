@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import portfolioImage from '../assets/images/portfolio.png';
+import aboutImage from '../assets/images/about.png';
 
 const Header = () => {
     const [isPortfolioHovered, setIsPortfolioHovered] = useState(false);
@@ -36,7 +38,7 @@ const Header = () => {
                             delay: isPortfolioHovered ? 0 : 0.1
                         }}
                     />
-                    <img src="/src/assets/images/portfolio.png" alt="Portfolio" className="w-full object-contain relative z-0" />
+                    <img src={portfolioImage} alt="Portfolio" className="w-full object-contain relative z-0" />
                 </Link>
                 <Link
                     to="/about"
@@ -65,7 +67,7 @@ const Header = () => {
                             delay: isAboutHovered ? 0 : 0.1
                         }}
                     />
-                    <img src="/src/assets/images/about.png" alt="About" className="w-full object-contain relative z-0" />
+                    <img src={aboutImage} alt="About" className="w-full object-contain relative z-0" />
                 </Link>
             </nav>
         </div>
