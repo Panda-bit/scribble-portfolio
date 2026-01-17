@@ -1,40 +1,21 @@
 import { motion } from 'framer-motion';
-import { Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
 import profileImage from '../assets/images/profile.jpg';
+import instaIcon from '../assets/images/insta.png';
+import linkedinIcon from '../assets/images/linkedin.png';
+import twitterIcon from '../assets/images/twitter.png';
+import redditIcon from '../assets/images/reddit.png';
+import mailIcon from '../assets/images/mail.png';
 import { useState } from 'react';
-
-// Reddit icon component
-const RedditIcon = ({ size = 32, strokeWidth = 1.5 }: { size?: number; strokeWidth?: number }) => (
-    <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-    >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="13" r="6" />
-        <circle cx="9.5" cy="12" r="0.5" fill="currentColor" />
-        <circle cx="14.5" cy="12" r="0.5" fill="currentColor" />
-        <path d="M15.5 14.5c-0.5 0.5-1.5 1-3.5 1s-3-0.5-3.5-1" />
-        <ellipse cx="12" cy="7.5" rx="3" ry="1.5" />
-        <path d="M17 10l2-2" />
-        <circle cx="19" cy="8" r="1" />
-    </svg>
-);
 
 const About = () => {
     const [showCopied, setShowCopied] = useState(false);
 
     const socialLinks = [
-        { href: 'https://instagram.com/lucas_.ho', icon: Instagram, label: 'Instagram' },
-        { href: 'https://www.linkedin.com/in/lucas-ho-019497360/', icon: Linkedin, label: 'LinkedIn' },
-        { href: 'https://x.com/lucas_h_0', icon: Twitter, label: 'Twitter' },
-        { href: 'https://www.reddit.com/user/OkBarracuda4416/', icon: RedditIcon, label: 'Reddit' },
-        { href: 'lucas.jediho@gmail.com', icon: Mail, label: 'Email', isEmail: true },
+        { href: 'https://instagram.com/lucas_.ho', icon: instaIcon, label: 'Instagram' },
+        { href: 'https://www.linkedin.com/in/lucas-ho-019497360/', icon: linkedinIcon, label: 'LinkedIn' },
+        { href: 'https://x.com/lucas_h_0', icon: twitterIcon, label: 'Twitter' },
+        { href: 'https://www.reddit.com/user/OkBarracuda4416/', icon: redditIcon, label: 'Reddit' },
+        { href: 'lucas.jediho@gmail.com', icon: mailIcon, label: 'Email', isEmail: true },
     ];
 
     const handleEmailClick = (e: React.MouseEvent) => {
@@ -85,18 +66,17 @@ const About = () => {
                     transition={{ duration: 1, delay: 0.6 }}
                 >
                     {socialLinks.map((link, index) => {
-                        const Icon = link.icon;
                         return (
                             <a
                                 key={index}
                                 href={link.isEmail ? '#' : link.href}
                                 target={link.isEmail ? undefined : "_blank"}
                                 rel={link.isEmail ? undefined : "noopener noreferrer"}
-                                className="text-gray-400 hover:text-gray-600 transition-colors"
+                                className="hover:opacity-70 transition-opacity"
                                 aria-label={link.label}
                                 onClick={link.isEmail ? handleEmailClick : undefined}
                             >
-                                <Icon size={32} strokeWidth={1.5} />
+                                <img src={link.icon} alt={link.label} className="w-16 h-16 object-contain" />
                             </a>
                         );
                     })}
