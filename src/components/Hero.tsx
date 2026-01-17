@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import titleImage from '../assets/images/title.png';
 
 const Hero = () => {
     return (
@@ -9,7 +10,7 @@ const Hero = () => {
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="w-full flex justify-center"
             >
-                <img src="/src/assets/images/title.png" alt="Lucas Ho" className="w-[80%] md:w-[60%] object-contain opacity-80" />
+                <img src={titleImage} alt="Lucas Ho" className="w-[80%] md:w-[60%] object-contain opacity-80" />
             </motion.div>
         </div>
     );
