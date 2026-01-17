@@ -94,7 +94,7 @@ const ScribbledBox = ({ project, index, onClick }: ScribbledBoxProps) => {
                     <h3 className="font-scribble text-xl md:text-3xl mb-2 text-gray-500 group-hover:text-gray-600 transition-colors break-words line-clamp-2">
                         {project.title}
                     </h3>
-                    <p className="font-scribble text-sm md:text-lg text-gray-400 group-hover:text-gray-500 transition-colors break-words leading-snug line-clamp-3">
+                    <p className="font-scribble text-base md:text-xl text-gray-400 group-hover:text-gray-500 transition-colors break-words leading-snug line-clamp-3">
                         {project.description}
                     </p>
                 </div>

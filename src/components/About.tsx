@@ -1,8 +1,30 @@
 import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Mail, Twitter } from 'lucide-react';
-import { MessageCircle } from 'lucide-react';
 import profileImage from '../assets/images/profile.jpg';
 import { useState } from 'react';
+
+// Reddit icon component
+const RedditIcon = ({ size = 32, strokeWidth = 1.5 }: { size?: number; strokeWidth?: number }) => (
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="13" r="6" />
+        <circle cx="9.5" cy="12" r="0.5" fill="currentColor" />
+        <circle cx="14.5" cy="12" r="0.5" fill="currentColor" />
+        <path d="M15.5 14.5c-0.5 0.5-1.5 1-3.5 1s-3-0.5-3.5-1" />
+        <ellipse cx="12" cy="7.5" rx="3" ry="1.5" />
+        <path d="M17 10l2-2" />
+        <circle cx="19" cy="8" r="1" />
+    </svg>
+);
 
 const About = () => {
     const [showCopied, setShowCopied] = useState(false);
@@ -11,7 +33,7 @@ const About = () => {
         { href: 'https://instagram.com/lucas_.ho', icon: Instagram, label: 'Instagram' },
         { href: 'https://www.linkedin.com/in/lucas-ho-019497360/', icon: Linkedin, label: 'LinkedIn' },
         { href: 'https://x.com/lucas_h_0', icon: Twitter, label: 'Twitter' },
-        { href: 'https://www.reddit.com/user/OkBarracuda4416/', icon: MessageCircle, label: 'Reddit' },
+        { href: 'https://www.reddit.com/user/OkBarracuda4416/', icon: RedditIcon, label: 'Reddit' },
         { href: 'lucas.jediho@gmail.com', icon: Mail, label: 'Email', isEmail: true },
     ];
 
